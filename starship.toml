@@ -1,9 +1,28 @@
+# Use custom format
+#format = """
+#[┌───────────────────>](bold green)
+#[│](bold green)$directory$rust$package
+#[└─>](bold green) """
+
+format = "$all$character"
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
 # Inserts a blank line between shell prompts
 add_newline = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 #[character] # The name of the module we are configuring is "character"
 #success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+[time]
+disabled = false
+style = "bold fg:242" # ANSI dark gray, see: https://i.stack.imgur.com/KTSQa.png
+#format = ' $time($style) '
+#time_format = "%T"
+#utc_time_offset = "-5"
+#time_range = "10:00:00-14:00:00"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -32,9 +51,11 @@ diverged = "<>"
 renamed = "r"
 deleted = "x"
 
-[env_var.AWS_ENVIRONMENT]
+[custom.AWS_ENVIRONMENT]
+command = "echo $AWS_ENVIRONMENT"
+when = """ test "$AWS_ENVIRONMENT" != "" """
 style = "bold yellow"
-format = "[$env_value]($style) "
+format = "[$output]($style) "
 
 [aws]
 symbol = "aws "
