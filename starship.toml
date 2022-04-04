@@ -4,7 +4,7 @@
 #[│](bold green)$directory$rust$package
 #[└─>](bold green) """
 
-format = "$all$character"
+format = "$all\n$character"
 
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
@@ -16,10 +16,14 @@ add_newline = true
 #[character] # The name of the module we are configuring is "character"
 #success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
+#The line_break module separates the prompt into two lines
+[line_break]
+disabled = true
+
 [time]
 disabled = false
 style = "bold fg:242" # ANSI dark gray, see: https://i.stack.imgur.com/KTSQa.png
-#format = ' $time($style) '
+#format = 'at [\[$time\]]($style) '
 #time_format = "%T"
 #utc_time_offset = "-5"
 #time_range = "10:00:00-14:00:00"
@@ -32,8 +36,8 @@ symbol = "pkg "
 [terraform]
 disabled = true
 
-[memory_usage]
-threshold = -1
+#[memory_usage]
+#threshold = -1
 #disabled = false
 
 [character]
